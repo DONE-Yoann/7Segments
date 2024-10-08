@@ -1,0 +1,78 @@
+﻿<Window x:Class="SevenSegmentDisplayApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Simulateur afficheur 7 segments" 
+        Height="563" 
+        Width="575" 
+        Topmost="True" 
+        Icon="/Ressources/Images/7-Segment.png" 
+        ResizeMode="NoResize">
+    <Grid Margin="0,0,0,-6">
+        <!-- Champs de saisie pour les équations de chaque segment -->
+        <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,92,0,0" Height="422" Width="314">
+            <GroupBox Height="422" Header="Équations de l'afficheur" Width="316" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="-1"/>
+            <Label Content="Équation pour le segment A" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="78" Canvas.Top="58"/>
+            <TextBox x:Name="EquationInputA" Width="280" Height="25" Canvas.Left="17" Canvas.Top="84" HorizontalAlignment="Left" VerticalAlignment="Center" Text="a+b+c+d"/>
+            <Label Content="Équation pour le segment B" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="79" Canvas.Top="109"/>
+            <TextBox x:Name="EquationInputB" Width="280" Height="25" Canvas.Left="17" Canvas.Top="135" HorizontalAlignment="Left" VerticalAlignment="Center" Text="a+b+c+d"/>
+            <Label Content="Équation pour le segment C" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="78" Canvas.Top="160"/>
+            <TextBox x:Name="EquationInputC" Width="280" Height="25" Canvas.Left="17" Canvas.Top="186" HorizontalAlignment="Left" VerticalAlignment="Center" Text="a+b+c+d"/>
+            <Label Content="Équation pour le segment D" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="78" Canvas.Top="211"/>
+            <TextBox x:Name="EquationInputD" Width="280" Height="25" Canvas.Left="17" Canvas.Top="237" HorizontalAlignment="Left" VerticalAlignment="Center" Text="a+b+c+d"/>
+            <Label Content="Équation pour le segment E" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="79" Canvas.Top="262"/>
+            <TextBox x:Name="EquationInputE" Width="280" Height="25" Canvas.Left="17" Canvas.Top="288" HorizontalAlignment="Left" VerticalAlignment="Center" Text="a+b+c+d"/>
+            <Label Content="Équation pour le segment F" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="79" Canvas.Top="313"/>
+            <TextBox x:Name="EquationInputF" Width="280" Height="25" Canvas.Left="17" Canvas.Top="339" HorizontalAlignment="Left" VerticalAlignment="Center" Text="a+b+c+d"/>
+            <Label Content="Équation pour le segment G" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="78" Canvas.Top="364"/>
+            <TextBox x:Name="EquationInputG" Width="280" Height="25" Canvas.Left="17" Canvas.Top="390" HorizontalAlignment="Left" VerticalAlignment="Center" Text="a+b+c+d"/>
+            <Label Content="Opération OU : &quot;+&quot; (plus)&#xD;&#xA;Opération ET : &quot;.&quot; (point)" Canvas.Left="178" Canvas.Top="20" HorizontalAlignment="Center" VerticalAlignment="Center" Height="38" Width="126" FontSize="10"/>
+            <Label Content="Complément : &quot;x/&quot; (slash)&#xA;(Ex: &quot;a.b/+c/+d/&quot;)" Canvas.Left="10" Canvas.Top="20" Height="38" Width="126" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        </Canvas>
+
+        <!-- Champ de saisie pour les entrées binaires et bouton de test -->
+        <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Margin="343,92,0,0" Height="102" Width="200">
+            <GroupBox Header="Valeur (Entrées)" HorizontalAlignment="Center" VerticalAlignment="Top" Height="102" Width="200"/>
+            <Label Content="d c b a" Canvas.Left="127" Canvas.Top="14" Height="24" Width="43" FontSize="11" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label Content="Valeur binaire :" HorizontalAlignment="Center" Width="95" Height="24" Canvas.Left="10" Canvas.Top="33" VerticalAlignment="Top"/>
+            <TextBox x:Name="InputBox" Width="83" Height="24" Text="0000" Canvas.Left="107" Canvas.Top="33" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="-0.59,0.856" TextAlignment="Center" FontSize="16"/>
+            <Button x:Name="TestButton" Content="Test équations" Width="180" Height="24" Click="BoutonTester_Click" Canvas.Left="10" Canvas.Top="66" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        </Canvas>
+
+        <!-- Canvas pour représenter l'afficheur 7 segments -->
+        <Canvas x:Name="DisplayCanvas" Width="200" Height="312" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="345,202,0,0">
+            <!-- Segments A à G -->
+
+            <GroupBox Header="Afficheur (Sorties)" Height="310" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Content="A" HorizontalAlignment="Center"  VerticalAlignment="Top" Canvas.Left="90" Canvas.Top="16"/>
+            <Label Content="B" HorizontalAlignment="Left"  VerticalAlignment="Center" Canvas.Left="170" Canvas.Top="98"/>
+            <Label Content="C" HorizontalAlignment="Center"  VerticalAlignment="Top" Canvas.Left="170" Canvas.Top="216"/>
+            <Label Content="D" HorizontalAlignment="Center"  VerticalAlignment="Top" Canvas.Left="90" Canvas.Top="251"/>
+            <Label Content="E" HorizontalAlignment="Center"  VerticalAlignment="Top" Canvas.Left="17" Canvas.Top="216"/>
+            <Label Content="F" HorizontalAlignment="Left"  VerticalAlignment="Center" Canvas.Left="17" Canvas.Top="98"/>
+            <Label Content="G" HorizontalAlignment="Center"  VerticalAlignment="Top" Canvas.Left="90" Canvas.Top="134"/>
+            <Rectangle x:Name="SegmentA" Width="100" Height="20" Fill="Gray" Stroke="Black" Canvas.Left="49" Canvas.Top="42" HorizontalAlignment="Center" VerticalAlignment="Top" RadiusX="9.5" RadiusY="9.5"/>
+            <Rectangle x:Name="SegmentB" Width="20" Height="100" Fill="Gray" Stroke="Black" Canvas.Left="149" Canvas.Top="61" HorizontalAlignment="Left" VerticalAlignment="Center" RadiusX="9.5" RadiusY="9.5"/>
+            <Rectangle x:Name="SegmentC" Width="20" Height="100" Fill="Gray" Stroke="Black" Canvas.Left="149" Canvas.Top="179" HorizontalAlignment="Center" VerticalAlignment="Top" RadiusX="9.5" RadiusY="9.5"/>
+            <Rectangle x:Name="SegmentD" Width="100" Height="20" Fill="Gray" Stroke="Black" Canvas.Left="49" Canvas.Top="277" HorizontalAlignment="Center" VerticalAlignment="Top" RadiusX="9.5" RadiusY="9.5"/>
+            <Rectangle x:Name="SegmentE" Width="20" Height="100" Fill="Gray" Stroke="Black" Canvas.Left="33" Canvas.Top="179" HorizontalAlignment="Center" VerticalAlignment="Top" RadiusX="9.5" RadiusY="9.5"/>
+            <Rectangle x:Name="SegmentF" Width="20" Height="100" Fill="Gray" Stroke="Black" Canvas.Left="33" Canvas.Top="61" HorizontalAlignment="Left" VerticalAlignment="Center" RadiusX="9.5" RadiusY="9.5"/>
+            <Rectangle x:Name="SegmentG" Width="100" Height="20" Fill="Gray" Stroke="Black" Canvas.Left="49" Canvas.Top="160" HorizontalAlignment="Center" VerticalAlignment="Top" RadiusX="9.5" RadiusY="9.5"/>
+
+        </Canvas>
+        <Rectangle HorizontalAlignment="Left" Height="49" Margin="106,26,0,0" Stroke="Black" VerticalAlignment="Top" Width="329" RadiusX="18.873" RadiusY="18.873">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFBA2A2" Offset="0.225"/>
+                    <GradientStop Color="White" Offset="0.985"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Content="Simulateur pour afficheur 7 segments" HorizontalAlignment="Left" Margin="114,33,0,0" VerticalAlignment="Top" FontSize="17" Height="36" Width="311" FontWeight="Bold"/>
+        <Image RenderOptions.BitmapScalingMode="HighQuality" HorizontalAlignment="Left" Margin="443,23,0,0" VerticalAlignment="Top" Width="100" Source="/Ressources/Images/done.automationautomation.png" Height="54"/>
+        <Image RenderOptions.BitmapScalingMode="HighQuality" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="86" Source="/Ressources/Images/UIMM_logo.png" Height="77"/>
+
+
+    </Grid>
+</Window>
